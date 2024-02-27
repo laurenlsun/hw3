@@ -1,4 +1,6 @@
 #include "llrec.h"
+#include <iostream>
+using namespace std;
 
 //*********************************************
 // Provide your implementation of llpivot below
@@ -36,11 +38,20 @@
  *
  */
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
+    if (head==nullptr) {
+        smaller = nullptr;
+        larger = nullptr;
+        return;
+    }
     if (head->next==nullptr) { // the last item in LL
-        if (head->val < pivot)
+        if (head->val < pivot) {
             smaller = head;
-        else
+            larger = nullptr;
+        }
+        else {
             larger = head;
+            smaller = nullptr;
+        }
         return;
     }
     // get to the end of the list first
@@ -53,7 +64,7 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
         head->next = larger;
         larger = head;
     }
-
+    head = nullptr;
 
     // backwards
     // // base case / empty list

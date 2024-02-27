@@ -83,8 +83,25 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
-
-
+    if (head==nullptr)
+        return nullptr;
+    if (head->next==nullptr) { // last item in LL
+        // some condition--if true remove
+        if (pred(head->val)) {
+            delete head;
+            return nullptr;
+        }
+        // condition false--keep
+        return head;
+    }
+    head->next = llfilter(head->next, pred);
+    if (pred(head->val)) { // delete this node
+        Node* temp = head->next;
+        delete head;
+        return temp;
+    }
+    // condition false--keep. send this to be pointed to by the caller
+    return head;
 }
 
 #endif
