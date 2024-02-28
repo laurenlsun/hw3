@@ -185,7 +185,6 @@ Heap<T,PComparator>::Heap(int m, PComparator c) : std::vector<T>(),  m(m), c(c) 
 
 }
 
-
 template <typename T, typename PComparator>
 Heap<T,PComparator>::~Heap() {}
 
