@@ -38,25 +38,27 @@ using namespace std;
  *
  */
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
-    if (head==nullptr) {
-        smaller = nullptr;
-        larger = nullptr;
+    if (head==NULL) {
+        smaller = NULL;
+        larger = NULL;
         return;
     }
-    if (head->next==nullptr) { // the last item in LL
-        if (head->val < pivot) {
-            smaller = head;
-            larger = nullptr;
-        }
-        else {
-            larger = head;
-            smaller = nullptr;
-        }
-        return;
-    }
+    // if (head->next==NULL) { // the last item in LL
+    //     if (head->val < pivot) {
+    //         smaller = head;
+    //         larger = NULL;
+    //         head = NULL;
+    //     }
+    //     else {
+    //         larger = head;
+    //         smaller = NULL;
+    //         head = NULL;
+    //     }
+    //     return;
+    // }
     // get to the end of the list first
     llpivot(head->next, smaller, larger, pivot);
-    if (head->val < pivot) {
+    if (head->val <= pivot) {
         head->next = smaller;
         smaller = head;
     }
@@ -64,7 +66,7 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
         head->next = larger;
         larger = head;
     }
-    head = nullptr;
+    head = NULL;
 
     // backwards
     // // base case / empty list
